@@ -1,0 +1,64 @@
+%%Uploading a picture with restricted dimensions
+L = int(input())
+N = int(input())
+
+for i in range(N):
+    W, H = map(int, input().split())
+
+    if W < L or H < L:
+        print("UPLOAD ANOTHER")
+    elif W == H:
+        print("ACCEPTED")
+    else:
+        print("CROP IT")
+
+%% monk and rotation code
+T = int(input())
+
+for _ in range(T):
+    N, K = map(int, input().split())
+    arr = list(map(int, input().split()))
+
+    K = K % N   # important step
+
+    # right rotation
+    result = arr[-K:] + arr[:-K]
+
+    print(*result)
+
+%% Modify the string
+S = input()
+result = ""
+for ch in S:
+    if ch.islower():
+        result += ch.upper()
+    else:
+        result += ch.lower()
+print(result)
+
+# Find majority element :
+# element that appears more than n/2 times in an array
+# sample input[3,3,4,2,4,4,2,4,4]
+# expected output:majority element :4
+arr = [3,3,4,2,4,4,2,4,4]
+
+for i in arr:
+    if arr.count(i) > len(arr)//2:
+        print("majority element:", i)
+        break
+
+#product of array
+def product_except_self(arr):
+    n = len(arr)
+    result = [1] * n
+    left = 1
+    for i in range(n):
+        result[i] = left
+        left *= arr[i]
+    right = 1
+    for i in range(n - 1, -1, -1):
+        result[i] *= right
+        right *= arr[i]
+    return result
+arr = [1, 2, 3, 4]
+print(product_except_self(arr))
